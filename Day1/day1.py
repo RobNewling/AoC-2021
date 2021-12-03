@@ -16,7 +16,7 @@ def load_input_file(file):
     with open(file) as f:
         original = f.readlines()
         cleaned = [s.strip() for s in original]
-        return cleaned
+        return list(map(int, cleaned))
 
 
 def count_increases(depth_measurements):
@@ -27,16 +27,19 @@ def count_increases(depth_measurements):
     for measurement in depth_measurements:
         num += 1
         print_out = [measurement]
-        if prev_measurement is not None:
-            if measurement > prev_measurement:
-                print_out.append('(increased)')
-                increase_count += 1
-            elif measurement == prev_measurement:
-                print_out.append('(no change)')
-            else:
-                decrease_count += 1
-                print_out.append('(decreased)')
-                print(f'{prev_measurement},{measurement}')
+        if prev_measurement is None:
+            prev_measurement = measurement
+            continue
+
+        if measurement > prev_measurement:
+            print_out.append('(increased)')
+            increase_count += 1
+        elif measurement == prev_measurement:
+            print_out.append('(no change)')
+        else:
+            decrease_count += 1
+            print_out.append('(decreased)')
+            print(f'{prev_measurement},{measurement}')
 
         prev_measurement = measurement
         print(' '.join(str(s) for s in print_out))
