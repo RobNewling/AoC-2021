@@ -14,7 +14,9 @@ def main():
 
 def load_input_file(file):
     with open(file) as f:
-        return f.readlines()
+        original = f.readlines()
+        cleaned = [s.strip() for s in original]
+        return cleaned
 
 
 def count_increases(depth_measurements):
