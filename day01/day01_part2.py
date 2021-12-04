@@ -1,6 +1,6 @@
 def main():
     print('Loading Depth Measurements from Input file')
-    depth_measurements = load_input_file('Input\input.txt')
+    depth_measurements = load_input_file('input.txt')
     print(f'Loaded {len(depth_measurements)} measurements')
 
     print('Counting increases')
